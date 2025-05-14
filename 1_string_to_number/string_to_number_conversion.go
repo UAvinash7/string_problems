@@ -3,7 +3,7 @@
 
 // arrays are not growable, you cannot append more elements to an existing array.
 
-// Slice is a data  structure describing a continguous section of an array.
+// Slice is a data structure describing a continguous section of an array.
 // Slice is not an array.
 
 // Slice is represented in memory with three elements :
@@ -24,27 +24,25 @@ package main
 
 import "fmt"
 
-/*
-func main() {
-	avi := []int32{0, 1}
-	helper(avi)
+func substractOneFromLength(slice *[]int) *[]int{
+	newSlice := *slice
+	newSlice = newSlice[0 : len(newSlice)-1]
+	*slice = newSlice
+	return slice
 }
 
-func helper(a []int32) {
-	fmt.Println(a)
-}
-
-*/
-
 func main() {
-	var numbers = [6]int{81, 64, 49, 36, 25, 16}
-	var slice []int = numbers[2:4] //	[49, 36]
-	fmt.Println("slice:", slice)
-	fmt.Println("length of slice:", len(slice))
-	fmt.Println("capacity of slice:", cap(slice))
-	fmt.Println("slice[2]:", slice[1])
-	slice = slice[0:4]
-	fmt.Println("slice:", slice)
-	slice = slice[:]
-	
+	avi := []int{0, 1, 2, 3, 4, 5}
+	fmt.Println("avi:", avi)		// [0 1 2 3 4 5]
+	fmt.Println("avi's length:", len(avi))	// 6
+	fmt.Println("avi's capacity:", cap(avi))	// 6
+	res := substractOneFromLength(&avi)
+	fmt.Println("after function call")
+	fmt.Println("avi:", avi)	// [0 1 2 3 4 5]
+	fmt.Println("avi's length:", len(avi))	// 6
+	fmt.Println("avi's capacity:", cap(avi))	// 6
+	fmt.Println("res:", *res)	// [0 1 2 3 4]
+	fmt.Println("length of res:", len(*res))	// 5
+	fmt.Println("capacity of res:", cap(*res))	// 6
+
 }
