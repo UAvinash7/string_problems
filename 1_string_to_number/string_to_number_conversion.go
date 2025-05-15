@@ -1,7 +1,7 @@
 // Array and Slice
 // a := [2]int32{} and b := [3]int32{} are of different types
 
-// arrays are not growable, you cannot append more elements to an existing array.
+// arrays are not growa  ble, you cannot append more elements to an existing array.
 
 // Slice is a data structure describing a continguous section of an array.
 // Slice is not an array.
@@ -22,27 +22,38 @@
 
 package main
 
-import "fmt"
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"log"
+)
 
-func substractOneFromLength(slice *[]int) *[]int{
-	newSlice := *slice
-	newSlice = newSlice[0 : len(newSlice)-1]
-	*slice = newSlice
-	return slice
+type Message struct {
+	Title string `json:"title"`
+	Body  string `json:"body"`
 }
 
 func main() {
-	avi := []int{0, 1, 2, 3, 4, 5}
-	fmt.Println("avi:", avi)		// [0 1 2 3 4 5]
-	fmt.Println("avi's length:", len(avi))	// 6
-	fmt.Println("avi's capacity:", cap(avi))	// 6
-	res := substractOneFromLength(&avi)
-	fmt.Println("after function call")
-	fmt.Println("avi:", avi)	// [0 1 2 3 4 5]
-	fmt.Println("avi's length:", len(avi))	// 6
-	fmt.Println("avi's capacity:", cap(avi))	// 6
-	fmt.Println("res:", *res)	// [0 1 2 3 4]
-	fmt.Println("length of res:", len(*res))	// 5
-	fmt.Println("capacity of res:", cap(*res))	// 6
+	message := Message{
+		Title: "Hello World",
+		Body:  "This is a wonderful message, I am sending to you",
+	}
+	data, err := json.Marshal(message)
+	checkError(err)
+	fmt.Println(string(data))
+	buf := new(bytes.Buffer)
+	encoder := json.NewEncoder(buf)
+	encoder.Encode(message)
+	//file, err := os.Create("message.json")
+	//checkError(err)
+	//defer file.Close()
+	//io.Copy(file, buf)
+	fmt.Println(buf.String())
+}
 
+func checkError(err error) {
+	if err != nil {
+		log.Fatal(err)
+	}
 }
