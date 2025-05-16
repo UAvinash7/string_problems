@@ -50,6 +50,8 @@ func main() {
 	//defer file.Close()
 	//io.Copy(file, buf)
 	fmt.Println(buf.String())
+	var num uint128 = 12630717197566440063
+	fmt.Println(num)
 }
 
 func checkError(err error) {
