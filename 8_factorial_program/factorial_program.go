@@ -6,25 +6,17 @@ Factorial Program
 
 */
 
+// Solution
+
 package main
 
 import "fmt"
 
-/*
-func fact(n int) int {
-	if n <= 1 {
-		return 1
-	}
-	return n * fact(n-1)
-}
-*/
-
 func main() {
-	var num int = 5
-	var res int = 1
+	var num int = 5	// calculating the value for factorial of 5
+	var result int = 1
 	for i := 1; i <= num; i++ {
-		res *= i
+		result = result  * i
 	}
-	fmt.Println("result:", res)
-
+	fmt.Println("result:", result)
 }
