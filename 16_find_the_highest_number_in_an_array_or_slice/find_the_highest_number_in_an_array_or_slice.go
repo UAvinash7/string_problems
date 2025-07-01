@@ -11,5 +11,5 @@ Find the highest number in an array or slice
 package main
 
 func main() {
-	
+
 }
