@@ -1,8 +1,8 @@
-/* 
+/*
 
 Problem Statement
 
-Reverse words in a string.package reversewordsinastring
+Reverse words in a string.
 
 */
 
@@ -10,6 +10,19 @@ Reverse words in a string.package reversewordsinastring
 
 package main
 
-func main() {
+import (
+	"fmt"
+	"strings"
+)
 
+func main() {
+	str := "mod.pkg"
+	fmt.Println("str:", str)
+	arr := strings.Split(str, ".")
+	var result string
+	for _, ele := range arr {
+		result = "." + ele + result
+	}
+	result = strings.Replace(result, ".", "", 1)
+	fmt.Println("result:", result)
 }
